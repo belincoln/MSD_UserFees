@@ -12,9 +12,13 @@ import os
 
 #%% Load Data
 
+# first set the working directory. This code will be changed based on the relative location of the data files 
+# on the local drive of the computer executing the command. 
+os.chdir('C:\\Users\\belincoln\\Documents\\! CBP\\!User Fees\\!! Goal 1 Dashboards')
+
 # Remember to set the working directory to whatever folder you have saved the zip file to. 
 # Works well for Jupyter Notebooks, can be configured in IDE using file explorer. 
-collections_475 = pd.read_excel(os.path.join('Source Emails','Files','Collections','IUF_Air','Collections cc475 - FY13 - FY18.xls'))
+collections_475 = pd.read_excel(os.path.join('Source Emails & Source Files','Files','Collections','IUF_Air','Collections cc475 - FY13 - FY18.xls'))
 
 #%% Clean Data
 
@@ -48,19 +52,17 @@ collections_475 = collections_475.iloc[2:,:]
 #%%
 # Remove excess rows 
 collections_475 = collections_475.dropna(subset = ['Class Code'])
-# Validate that data file contains only one conveyance, use conveyance to label total collections column
-column_name = collections_475['Class Code'].unique()[0]
+
 # Create total collections column
-collections_475[column_name] = collections_475.iloc[:,-3:].sum(axis = 1)
+collections_475['Collections'] = collections_475.iloc[:,-3:].sum(axis = 1)
 #delete excess columns
-collections_475 = collections_475.loc[:,[column_name,'Period']]
+collections_475 = collections_475.loc[:,['Collections','Period']]
 
 #%%
 # Sum on Remittance Period
 collections_475 = collections_475.groupby(collections_475['Period']).sum()
 # Remove audit payments
 collections_475 = collections_475[~collections_475.index.str.contains("\*")]
-# remove payments outside of 2013-2018
 
 # Add an additional column that shows remittance period (independent of year)
 collections_475['Remittance Period'] = collections_475.index.str.split('20').str[0]
@@ -75,12 +77,9 @@ collections_475['Calendar Year'] = collections_475['Calendar Year'].astype(int)
 years = [2012,2013,2014,2015,2016,2017,2018]
 collections_475 = collections_475[collections_475['Calendar Year'].isin(years)]
 
-# rename collections column
-collections_475.rename(columns = {'475 - Air Pass (Immigration)':'Collections'}, inplace = True)
-
 #%%
 
-workload = pd.read_excel(os.path.join('Source Emails','Files','Workload','IUF_Air','FY09-fy18-passenger data air and cruise.xlsx'))
+workload = pd.read_excel(os.path.join('Source Emails & Source Files','Files','Workload','IUF_Air','FY09-fy18-passenger data air and cruise.xlsx'))
 
 #Clean Workload Df
 #remove cruise data

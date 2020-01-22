@@ -11,9 +11,14 @@ import numpy as np
 import os
 
 #%%
+
+# first set the working directory. This code will be changed based on the relative location of the data files 
+# on the local drive of the computer executing the command. 
+os.chdir('C:\\Users\\belincoln\\Documents\\! CBP\\!User Fees\\!! Goal 1 Dashboards')
+
 # read in Collection Data
 #collections_477 = pd.read_excel(r'C:\Users\belincoln\Documents\! CBP\!User Fees\ML_Applications\CC477 collections FY13-FY18.xlsx')
-collections_477 = pd.read_excel(os.path.join('Source Emails','Files','Collections','IUF_Cruise','CC477 collections FY13-FY18.xlsx'))
+collections_477 = pd.read_excel(os.path.join('Source Emails & Source Files','Files','Collections','IUF_Cruise','CC477 collections FY13-FY18.xlsx'))
 
 # format df, add header
 collections_477 = collections_477.drop([0,1,2], axis=0) # 'axis=1' specifies columns; 'axis=0' is rows

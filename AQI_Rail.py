@@ -13,9 +13,13 @@ import os
 
 #%% Load Data
 
+# first set the working directory. This code will be changed based on the relative location of the data files 
+# on the local drive of the computer executing the command. 
+os.chdir('C:\\Users\\belincoln\\Documents\\! CBP\\!User Fees\\!! Goal 1 Dashboards')
+
 # Remember to set the working directory to whatever folder you have saved the zip file to. 
 # Works well for Jupyter Notebooks, can be configured in IDE using file explorer. 
-data = pd.read_excel(os.path.join('Source Emails','Files','Collections','AQI','AQI Collections.xlsx'),'Rail')
+data = pd.read_excel(os.path.join('Source Emails & Source Files','Files','Collections','AQI','AQI Collections.xlsx'),'Rail')
 #%%
 
 Rail_Collections = data[['Fiscal year', 'Fiscal period','Document Date', '$']]
