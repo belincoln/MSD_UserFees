@@ -47,7 +47,7 @@ collections_477 = collections_477.groupby(collections_477.index).sum()
 #%%
 
 #collections_476 = pd.read_excel(r'C:\Users\belincoln\Documents\! CBP\!User Fees\ML_Applications\Collections cc476 for FY13-FY18.xlsx')
-collections_476 = pd.read_excel(os.path.join('Source Emails','Files','Collections','IUF_Cruise','Collections cc476 for FY13-FY18.xlsx'))
+collections_476 = pd.read_excel(os.path.join('Source Emails & Source Files','Files','Collections','IUF_Cruise','Collections cc476 for FY13-FY18.xlsx'))
 # format df, add header
 collections_476 = collections_476.drop([0,1,2], axis=0) # 'axis=1' specifies columns; 'axis=0' is rows
 header = collections_476.iloc[0]
@@ -79,7 +79,7 @@ collections['Collections'] = collections.iloc[:,0] + collections.iloc[:,1]
 
 #%%
 #workload = pd.read_excel(r'C:\Users\belincoln\Documents\! CBP\!User Fees\ML_Applications\Workload_PPAE.xlsx')
-workload = pd.read_excel(os.path.join('Source Emails','Files','Workload','IUF_Cruise','Workload_PPAE.xlsx'))
+workload = pd.read_excel(os.path.join('Source Emails & Source Files','Files','Workload','IUF_Cruise','Workload_PPAE.xlsx'))
 # Select workload Month and Year in order to sum on Remittance Period
 workload['Year'] = workload['Date'].str[-4:]
 workload['Month'] = workload['Date'].str.split('/').str[0]
