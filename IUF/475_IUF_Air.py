@@ -138,7 +138,7 @@ collections_475 = collections_475.iloc[1:-1,:]
 
 #%%
 #remove non FY2013-2018 data
-searchfor = ['Qtr 02 \(Apr-Jun\) 2012', 'Qtr 03a \(Jul-Aug\) 2012','Qtr 03b \(Sept\) 2012']
+searchfor = ['Qtr 02 \(Apr-Jun\) 2012', 'Qtr 03a \(Jul-Aug\) 2012','Qtr 03b \(Sept\) 2012', 'Qtr 03b \(Sept\) 2018']
 collections_475 = collections_475[~collections_475.index.str.contains('|'.join(searchfor))]
 workload = workload[~workload.index.str.contains('|'.join(searchfor))]
 
